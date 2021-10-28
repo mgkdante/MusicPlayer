@@ -91,4 +91,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="song_title">Song Title</string>
+    <string name="play_next">play next</string>
+    <string name="play_song">play song</string>
+    <string name="play_previous">play previous</string>
 </resources>
