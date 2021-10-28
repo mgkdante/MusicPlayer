@@ -32,21 +32,25 @@
             android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="#00FFFFF"
             android:src="@drawable/ic_baseline_skip_previous_24"
-            android:background="#00FFFFF"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/play"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="#00FFFFF"
             android:src="@drawable/ic_baseline_play_arrow_24"
-            android:background="#00FFFFF"/>
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <ImageButton
             android:id="@+id/forward"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="#00FFFFF"
             android:src="@drawable/ic_baseline_skip_next_24"
-            android:background="#00FFFFF" />
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
 
