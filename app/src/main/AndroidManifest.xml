@@ -10,18 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicPlayer">
         <activity
-            android:name=".MusicList"
-            android:exported="false"
-            android:label="@string/title_activity_music_list"
-            android:theme="@style/Theme.MusicPlayer.NoActionBar" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:label="@string/title_activity_music_list"
+            android:theme="@style/Theme.MusicPlayer.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+       </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".PlayActivity"
+            android:exported="true">
         </activity>
     </application>
 

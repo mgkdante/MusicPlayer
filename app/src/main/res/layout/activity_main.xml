@@ -1,54 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/musicButtons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/song_title" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/musicList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-2dp" />
 
-    <SeekBar
-        android:id="@+id/musicPorgress"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:progress="50" />
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/play_previous"
-            android:background="@drawable/ic_baseline_skip_previous_24" />
-
-        <ImageButton
-            android:id="@+id/play_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/play_song"
-            android:background="@drawable/ic_baseline_pause_24" />
-
-        <ImageButton
-            android:id="@+id/forward_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/play_next"
-            android:background="@drawable/ic_baseline_skip_next_24" />
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

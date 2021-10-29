@@ -95,4 +95,6 @@
     <string name="play_next">play next</string>
     <string name="play_song">play song</string>
     <string name="play_previous">play previous</string>
+    <string name="title">Title</string>
+    <string name="_0">0</string>
 </resources>
