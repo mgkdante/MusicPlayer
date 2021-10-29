@@ -10,12 +10,16 @@ import android.content.Intent as Intent
 
 class MainActivity : AppCompatActivity(), MusicListAdapter.OnItemClickListener {
 
-    private val musicListArray = mutableListOf(
-        DataList("BadAssSong", R.raw.a4),
-        DataList("AnotherOne", R.raw.a1),
-        DataList("AgainAndAgain", R.raw.a5),
-        DataList("Bruh", R.raw.a6)
-    )
+    companion object{
+        val musicListArray = mutableListOf(
+            DataList("BadAssSong", R.raw.a4),
+            DataList("AnotherOne", R.raw.a1),
+            DataList("AgainAndAgain", R.raw.a5),
+            DataList("Bruh", R.raw.a6)
+        )
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +30,14 @@ class MainActivity : AppCompatActivity(), MusicListAdapter.OnItemClickListener {
 
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(this)
+
     }
 
     override fun onItemClick(position: Int) {
 
 
         val intent = Intent(this, PlayActivity::class.java)
-        intent.putExtra("songTitle", musicListArray[position].songTitle)
+        intent.putExtra("songPosition", position)
         startActivity(intent)
     }
 }

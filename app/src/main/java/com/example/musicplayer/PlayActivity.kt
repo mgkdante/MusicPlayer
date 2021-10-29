@@ -10,6 +10,9 @@ import android.widget.TextView
 
 class PlayActivity : AppCompatActivity() {
 
+    companion object{
+        var playing = false;
+    }
     private var musicList = arrayListOf(R.raw.a1,R.raw.a4, R.raw.a5, R.raw.a6)
     private lateinit var musicPlayer: MediaPlayer
     private lateinit var playBtn: ImageButton
@@ -17,7 +20,7 @@ class PlayActivity : AppCompatActivity() {
     private lateinit var backBtn: ImageButton
     private lateinit var titleSong : TextView
     private lateinit var progressBar: SeekBar
-
+    private  var songPosition: Int = -1
     private lateinit var runnable : Runnable
     private var handler = Handler()
 
@@ -25,26 +28,33 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
-        var songPosition = 1
+        songPosition = intent.getIntExtra("songPosition",-1);
+        AssertionError(songPosition != -1)
 
         titleSong = findViewById(R.id.title)
         playBtn = findViewById(R.id.play_btn)
         forwardBtn = findViewById(R.id.forward_btn)
         backBtn = findViewById(R.id.back_btn)
         progressBar = findViewById(R.id.musicPorgress)
-        musicPlayer = MediaPlayer.create(this, musicList[songPosition])
 
+        if(playing == true){
+            musicPlayer.reset();
+            musicPlayer.release();
+        }
+
+        musicPlayer = MediaPlayer.create(this, musicList[songPosition])
+        titleSong.text = MainActivity.musicListArray[songPosition].songTitle
         progressBar.progress = 0
         progressBar.max = musicPlayer.duration
 
-        titleSong.text = intent.getStringExtra("songTitle")
 
         musicPlayer.start()
-
+        PlayActivity.playing = true;
         playBtn.setOnClickListener {
             if (musicPlayer.isPlaying) {
                 playBtn.setBackgroundResource(R.drawable.ic_baseline_play_arrow_24)
                 musicPlayer.pause()
+                playing = false;
 
             } else {
                 playBtn.setBackgroundResource(R.drawable.ic_baseline_pause_24)
@@ -53,16 +63,14 @@ class PlayActivity : AppCompatActivity() {
         }
 
         forwardBtn.setOnClickListener {
-            if(songPosition < musicList.size) {
+            if(songPosition < musicList.size - 1 ) {
                 songPosition++
             }
             else{
                 songPosition = 0
             }
-            musicPlayer.reset()
-            titleSong.text = musicList[songPosition].toString()
-            musicPlayer = MediaPlayer.create(this, musicList[songPosition])
-            musicPlayer.start()
+            setSong()
+
         }
 
         backBtn.setOnClickListener{
@@ -70,12 +78,9 @@ class PlayActivity : AppCompatActivity() {
                 songPosition--
             }
             else{
-                songPosition = musicList.size
+                songPosition = musicList.size - 1 ;
             }
-            musicPlayer.reset()
-            titleSong.text = musicList[songPosition].toString()
-            musicPlayer = MediaPlayer.create(this, musicList[songPosition])
-            musicPlayer.start()
+            setSong();
         }
 
         progressBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -97,6 +102,13 @@ class PlayActivity : AppCompatActivity() {
             handler.postDelayed(runnable, 1000)
         }
         handler.postDelayed(runnable, 1000)
+    }
+
+    fun setSong(){
+        if(musicPlayer.isPlaying) musicPlayer.reset()
+        titleSong.text = MainActivity.musicListArray[songPosition].songTitle
+        musicPlayer = MediaPlayer.create(this, musicList[songPosition])
+        musicPlayer.start()
     }
 }
 
